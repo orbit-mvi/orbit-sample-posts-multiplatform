@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
 
     spec.source_files             = "build/cocoapods/orbit/sharedOrbitSwift/**/*.{h,m,swift}"
 
-    spec.swift_version = '5.0'
+    spec.swift_version            = '5.0'
     spec.ios.deployment_target = '14.1'
 
     spec.dependency 'shared'
@@ -48,7 +48,7 @@ Pod::Spec.new do |spec|
             :script => <<-SCRIPT
                 set -ev
                 REPO_ROOT="$PODS_TARGET_SRCROOT"
-                "$REPO_ROOT/../../../gradlew" -p "$REPO_ROOT" :samples:orbit-posts-multiplatform:shared:syncOrbitSwift \
+                "$REPO_ROOT/../gradlew" -p "$REPO_ROOT" :shared:syncOrbitSwift \
                     -Pkotlin.native.cocoapods.target=$KOTLIN_TARGET \
                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION \
                     -Pkotlin.native.cocoapods.cflags="$OTHER_CFLAGS" \

@@ -6,13 +6,13 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":samples:orbit-posts-multiplatform:shared"))
+    implementation(project(":shared"))
     implementation("androidx.appcompat:appcompat:1.3.1")
 
     implementation("org.orbit-mvi:orbit-core:4.2.0")
     implementation("org.orbit-mvi:orbit-viewmodel:4.2.0")
 
-    implementation("io.ktor:ktor-client-android:1.6.2")
+    implementation("io.ktor:ktor-client-android:1.6.3")
 
     implementation("io.coil-kt:coil-compose:1.3.2")
 

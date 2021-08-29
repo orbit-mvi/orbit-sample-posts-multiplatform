@@ -4,7 +4,7 @@ plugins {
     kotlin("kapt")
     id("com.android.library")
     id("kotlin-parcelize")
-    kotlin("plugin.serialization")
+    kotlin("plugin.serialization") version "1.5.21"
     id("org.orbit-mvi.orbit.swift") version "0.1.0"
 }
 
@@ -38,8 +38,8 @@ kotlin {
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
-                implementation("io.ktor:ktor-client-core:1.6.2")
-                implementation("io.ktor:ktor-client-serialization:1.6.2")
+                implementation("io.ktor:ktor-client-core:1.6.3")
+                implementation("io.ktor:ktor-client-serialization:1.6.3")
 
                 implementation("io.insert-koin:koin-core:3.1.2")
             }
@@ -54,7 +54,7 @@ kotlin {
         @Suppress("UnusedPrivateMember")
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:1.6.2")
+                implementation("io.ktor:ktor-client-android:1.6.3")
 
                 implementation("org.orbit-mvi:orbit-viewmodel:4.2.0")
 
@@ -74,7 +74,7 @@ kotlin {
         @Suppress("UnusedPrivateMember")
         val iosMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:1.6.2")
+                implementation("io.ktor:ktor-client-ios:1.6.3")
             }
         }
         @Suppress("UnusedPrivateMember")
