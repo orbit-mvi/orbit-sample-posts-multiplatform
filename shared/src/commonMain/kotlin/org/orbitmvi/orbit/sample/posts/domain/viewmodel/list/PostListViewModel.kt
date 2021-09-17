@@ -33,9 +33,7 @@ class PostListViewModel(
     override val container = viewModelScope.container<PostListState, NavigationEvent>(
         initialState = PostListState()
     ) {
-        if (it.overviews.isEmpty()) {
-            loadOverviews()
-        }
+        loadOverviews()
     }
 
     private fun loadOverviews() = intent {

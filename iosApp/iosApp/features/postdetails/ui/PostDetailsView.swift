@@ -19,15 +19,64 @@ import shared
 import sharedOrbitSwift
 
 struct PostDetailsView: View {
-    
+
     @StateObject private var postDetailsViewModel: PostDetailsViewModelStateObject
 
     var body: some View {
         let state = postDetailsViewModel.state
-        Text(state.postOverview.title)
         
-        if let state = state as? PostDetailState.Details {
-            Text(state.post.body)
+        ScrollView {
+            VStack(alignment: .leading) {
+                
+                Text(state.postOverview.title).font(.title).padding(.bottom)
+                
+                if let state = state as? PostDetailState.Details {
+                    
+                    Text(state.post.body)
+                        .font(.body)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Divider().padding(.bottom).padding(.top)
+                    
+                    Text(String(format:"%d comments", state.post.comments.count))
+                        .font(.body)
+                        .padding(.bottom)
+                    
+                    ForEach(state.post.comments.indices, id: \.self) { idx in
+                        if idx != 0 {
+                            Divider()
+                                .padding(.bottom)
+                                .padding(.top)
+                        }
+                        
+                        let comment = state.post.comments[idx]
+                        Text(comment.name)
+                            .lineLimit(1)
+                            .font(.caption2)
+                        Text(comment.email)
+                            .lineLimit(1)
+                            .font(.caption)
+                        Text(comment.body)
+                            .font(.body)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+            .padding()
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                AsyncImage(
+                    url: URL(string:state.postOverview.avatarUrl)!,
+                    placeholder: { Circle().foregroundColor(Color.tertiarySystemGroupedBackground) },
+                    image: { Image(uiImage: $0).resizable() }
+                ).frame(width: 24, height: 24)
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Text(state.postOverview.username)
+            }
         }
     }
 }
